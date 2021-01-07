@@ -1,0 +1,7 @@
+classes= 20
+train  = /home/lebhoryi/Data/VOC/train.txt
+valid  = /home/lebhoryi/Data/VOC/2007_test.txt
+difficult = /home/lebhoryi/Data/VOC/difficult_2007_test.txt
+names = data/voc.names
+backup = /home/lebhoryi/RT-Thread/Detection_API/Yolo-Fastest/backup/
+
