@@ -1,0 +1,4667 @@
+{
+    "_allocate_inputs": 0,
+    "_allocate_outputs": 0,
+    "cli_parameters": "analyze --model /home/lebhoryi/RT-Thread/Detection_API/keras-YOLOv3-model-set/weights/yolo.h5 --output /home/lebhoryi/tmp",
+    "cli_version": {
+        "major": 1,
+        "micro": 0,
+        "minor": 4
+    },
+    "cli_version_str": "1.4.0",
+    "compression": {
+        "factor": null,
+        "layers": {}
+    },
+    "date_time": "Sat Jan  9 11:27:45 2021",
+    "error": 0,
+    "error_str": [],
+    "evaluation_measures": [],
+    "evaluation_status": "NOT EVALUATED",
+    "exec_cmd": "analyze",
+    "exec_duration": 1.5087909698486328,
+    "hash": "d295f967757b3a790bc70e766d886094",
+    "inputs": [
+        "image_input"
+    ],
+    "l2_error": -1.0,
+    "l2_status": "NOT EVALUATED",
+    "layers": [
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": {
+                    "c_size": 409600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        320,
+                        320,
+                        1,
+                        1
+                    ]
+                },
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 0,
+            "inputs": [],
+            "name": "image_input",
+            "out_shapes": [
+                [
+                    1,
+                    320,
+                    320
+                ]
+            ],
+            "outputs": [
+                "image_input"
+            ],
+            "shape": [
+                1,
+                320,
+                320
+            ],
+            "type": "Input"
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 1,
+            "inputs": [
+                "image_input"
+            ],
+            "name": "zero_padding2d",
+            "out_shapes": [
+                [
+                    1,
+                    321,
+                    321
+                ]
+            ],
+            "outputs": [
+                "zero_padding2d"
+            ],
+            "pad": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "type": "Pad",
+            "value": 0.0
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2457608,
+                "n_params": 72,
+                "psize": 288,
+                "rom_n_params": 80,
+                "rom_output": {
+                    "c_size": 819200,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        160,
+                        160,
+                        8,
+                        1
+                    ]
+                },
+                "rom_size": 320,
+                "rom_size_params": 320,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 1,
+            "id": 2,
+            "inputs": [
+                "zero_padding2d"
+            ],
+            "name": "conv2d",
+            "num_filters": 8,
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "conv2d"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                2,
+                2
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 16,
+                "psize": 64,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 3,
+            "inputs": [
+                "conv2d"
+            ],
+            "name": "batch_normalization",
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "batch_normalization"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 4,
+            "inputs": [
+                "batch_normalization"
+            ],
+            "name": "leaky_re_lu",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2252808,
+                "n_params": 64,
+                "psize": 256,
+                "rom_n_params": 72,
+                "rom_output": {
+                    "c_size": 819200,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        160,
+                        160,
+                        8,
+                        1
+                    ]
+                },
+                "rom_size": 288,
+                "rom_size_params": 288,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 5,
+            "inputs": [
+                "leaky_re_lu"
+            ],
+            "name": "conv2d_1",
+            "num_filters": 8,
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "conv2d_1"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 16,
+                "psize": 64,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 6,
+            "inputs": [
+                "conv2d_1"
+            ],
+            "name": "batch_normalization_1",
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_1"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 7,
+            "inputs": [
+                "batch_normalization_1"
+            ],
+            "name": "leaky_re_lu_1",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_1"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2457608,
+                "n_params": 72,
+                "psize": 288,
+                "rom_n_params": 80,
+                "rom_output": {
+                    "c_size": 819200,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        160,
+                        160,
+                        8,
+                        1
+                    ]
+                },
+                "rom_size": 320,
+                "rom_size_params": 320,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 8,
+            "id": 8,
+            "inputs": [
+                "leaky_re_lu_1"
+            ],
+            "name": "depthwise_conv2d",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d"
+            ],
+            "pad": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 16,
+                "psize": 64,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 9,
+            "inputs": [
+                "depthwise_conv2d"
+            ],
+            "name": "batch_normalization_2",
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_2"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 10,
+            "inputs": [
+                "batch_normalization_2"
+            ],
+            "name": "leaky_re_lu_2",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    8,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_2"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 819204,
+                "n_params": 32,
+                "psize": 128,
+                "rom_n_params": 36,
+                "rom_output": {
+                    "c_size": 409600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        160,
+                        160,
+                        4,
+                        1
+                    ]
+                },
+                "rom_size": 144,
+                "rom_size_params": 144,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 11,
+            "inputs": [
+                "leaky_re_lu_2"
+            ],
+            "name": "conv2d_2",
+            "num_filters": 4,
+            "out_shapes": [
+                [
+                    4,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "conv2d_2"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 8,
+                "psize": 32,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 12,
+            "inputs": [
+                "conv2d_2"
+            ],
+            "name": "batch_normalization_3",
+            "out_shapes": [
+                [
+                    4,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_3"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 5734432,
+                "n_params": 128,
+                "psize": 512,
+                "rom_n_params": 160,
+                "rom_output": {
+                    "c_size": 3276800,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        160,
+                        160,
+                        32,
+                        1
+                    ]
+                },
+                "rom_size": 640,
+                "rom_size_params": 640,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 13,
+            "inputs": [
+                "batch_normalization_3"
+            ],
+            "name": "conv2d_3",
+            "num_filters": 32,
+            "out_shapes": [
+                [
+                    32,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "conv2d_3"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 64,
+                "psize": 256,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 14,
+            "inputs": [
+                "conv2d_3"
+            ],
+            "name": "batch_normalization_4",
+            "out_shapes": [
+                [
+                    32,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_4"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 15,
+            "inputs": [
+                "batch_normalization_4"
+            ],
+            "name": "leaky_re_lu_3",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    32,
+                    160,
+                    160
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_3"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 16,
+            "inputs": [
+                "leaky_re_lu_3"
+            ],
+            "name": "zero_padding2d_1",
+            "out_shapes": [
+                [
+                    32,
+                    161,
+                    161
+                ]
+            ],
+            "outputs": [
+                "zero_padding2d_1"
+            ],
+            "pad": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "type": "Pad",
+            "value": 0.0
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2457632,
+                "n_params": 288,
+                "psize": 1152,
+                "rom_n_params": 320,
+                "rom_output": {
+                    "c_size": 819200,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        80,
+                        80,
+                        32,
+                        1
+                    ]
+                },
+                "rom_size": 1280,
+                "rom_size_params": 1280,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 32,
+            "id": 17,
+            "inputs": [
+                "zero_padding2d_1"
+            ],
+            "name": "depthwise_conv2d_1",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    32,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_1"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                2,
+                2
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 64,
+                "psize": 256,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 18,
+            "inputs": [
+                "depthwise_conv2d_1"
+            ],
+            "name": "batch_normalization_5",
+            "out_shapes": [
+                [
+                    32,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_5"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 19,
+            "inputs": [
+                "batch_normalization_5"
+            ],
+            "name": "leaky_re_lu_4",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    32,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_4"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 1638408,
+                "n_params": 256,
+                "psize": 1024,
+                "rom_n_params": 264,
+                "rom_output": {
+                    "c_size": 204800,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        80,
+                        80,
+                        8,
+                        1
+                    ]
+                },
+                "rom_size": 1056,
+                "rom_size_params": 1056,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 20,
+            "inputs": [
+                "leaky_re_lu_4"
+            ],
+            "name": "conv2d_4",
+            "num_filters": 8,
+            "out_shapes": [
+                [
+                    8,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "conv2d_4"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 16,
+                "psize": 64,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 21,
+            "inputs": [
+                "conv2d_4"
+            ],
+            "name": "batch_normalization_6",
+            "out_shapes": [
+                [
+                    8,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_6"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 3379248,
+                "n_params": 384,
+                "psize": 1536,
+                "rom_n_params": 432,
+                "rom_output": {
+                    "c_size": 1228800,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        80,
+                        80,
+                        48,
+                        1
+                    ]
+                },
+                "rom_size": 1728,
+                "rom_size_params": 1728,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 22,
+            "inputs": [
+                "batch_normalization_6"
+            ],
+            "name": "conv2d_5",
+            "num_filters": 48,
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "conv2d_5"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 96,
+                "psize": 384,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 23,
+            "inputs": [
+                "conv2d_5"
+            ],
+            "name": "batch_normalization_7",
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_7"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 24,
+            "inputs": [
+                "batch_normalization_7"
+            ],
+            "name": "leaky_re_lu_5",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_5"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 3686448,
+                "n_params": 432,
+                "psize": 1728,
+                "rom_n_params": 480,
+                "rom_output": {
+                    "c_size": 1228800,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        80,
+                        80,
+                        48,
+                        1
+                    ]
+                },
+                "rom_size": 1920,
+                "rom_size_params": 1920,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 48,
+            "id": 25,
+            "inputs": [
+                "leaky_re_lu_5"
+            ],
+            "name": "depthwise_conv2d_2",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_2"
+            ],
+            "pad": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 96,
+                "psize": 384,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 26,
+            "inputs": [
+                "depthwise_conv2d_2"
+            ],
+            "name": "batch_normalization_8",
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_8"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 27,
+            "inputs": [
+                "batch_normalization_8"
+            ],
+            "name": "leaky_re_lu_6",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_6"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2457608,
+                "n_params": 384,
+                "psize": 1536,
+                "rom_n_params": 392,
+                "rom_output": {
+                    "c_size": 204800,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        80,
+                        80,
+                        8,
+                        1
+                    ]
+                },
+                "rom_size": 1568,
+                "rom_size_params": 1568,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 28,
+            "inputs": [
+                "leaky_re_lu_6"
+            ],
+            "name": "conv2d_6",
+            "num_filters": 8,
+            "out_shapes": [
+                [
+                    8,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "conv2d_6"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 16,
+                "psize": 64,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 29,
+            "inputs": [
+                "conv2d_6"
+            ],
+            "name": "batch_normalization_9",
+            "out_shapes": [
+                [
+                    8,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_9"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 51200,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": {
+                    "c_size": 204800,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        80,
+                        80,
+                        8,
+                        1
+                    ]
+                },
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 31,
+            "inputs": [
+                "batch_normalization_6",
+                "batch_normalization_9"
+            ],
+            "name": "add",
+            "operation": "add",
+            "out_shapes": [
+                [
+                    8,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "add"
+            ],
+            "type": "Eltwise"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 3379248,
+                "n_params": 384,
+                "psize": 1536,
+                "rom_n_params": 432,
+                "rom_output": {
+                    "c_size": 1228800,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        80,
+                        80,
+                        48,
+                        1
+                    ]
+                },
+                "rom_size": 1728,
+                "rom_size_params": 1728,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 32,
+            "inputs": [
+                "add"
+            ],
+            "name": "conv2d_7",
+            "num_filters": 48,
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "conv2d_7"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 96,
+                "psize": 384,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 33,
+            "inputs": [
+                "conv2d_7"
+            ],
+            "name": "batch_normalization_10",
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_10"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 34,
+            "inputs": [
+                "batch_normalization_10"
+            ],
+            "name": "leaky_re_lu_7",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    48,
+                    80,
+                    80
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_7"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 35,
+            "inputs": [
+                "leaky_re_lu_7"
+            ],
+            "name": "zero_padding2d_2",
+            "out_shapes": [
+                [
+                    48,
+                    81,
+                    81
+                ]
+            ],
+            "outputs": [
+                "zero_padding2d_2"
+            ],
+            "pad": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "type": "Pad",
+            "value": 0.0
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 921648,
+                "n_params": 432,
+                "psize": 1728,
+                "rom_n_params": 480,
+                "rom_output": {
+                    "c_size": 307200,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        40,
+                        40,
+                        48,
+                        1
+                    ]
+                },
+                "rom_size": 1920,
+                "rom_size_params": 1920,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 48,
+            "id": 36,
+            "inputs": [
+                "zero_padding2d_2"
+            ],
+            "name": "depthwise_conv2d_3",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    48,
+                    40,
+                    40
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_3"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                2,
+                2
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 96,
+                "psize": 384,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 37,
+            "inputs": [
+                "depthwise_conv2d_3"
+            ],
+            "name": "batch_normalization_11",
+            "out_shapes": [
+                [
+                    48,
+                    40,
+                    40
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_11"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 38,
+            "inputs": [
+                "batch_normalization_11"
+            ],
+            "name": "leaky_re_lu_8",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    48,
+                    40,
+                    40
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_8"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 1228816,
+                "n_params": 768,
+                "psize": 3072,
+                "rom_n_params": 784,
+                "rom_output": {
+                    "c_size": 102400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        40,
+                        40,
+                        16,
+                        1
+                    ]
+                },
+                "rom_size": 3136,
+                "rom_size_params": 3136,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 39,
+            "inputs": [
+                "leaky_re_lu_8"
+            ],
+            "name": "conv2d_8",
+            "num_filters": 16,
+            "out_shapes": [
+                [
+                    16,
+                    40,
+                    40
+                ]
+            ],
+            "outputs": [
+                "conv2d_8"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 32,
+                "psize": 128,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 40,
+            "inputs": [
+                "conv2d_8"
+            ],
+            "name": "batch_normalization_12",
+            "out_shapes": [
+                [
+                    16,
+                    40,
+                    40
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_12"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 41,
+            "inputs": [
+                "batch_normalization_12"
+            ],
+            "name": "zero_padding2d_3",
+            "out_shapes": [
+                [
+                    16,
+                    41,
+                    41
+                ]
+            ],
+            "outputs": [
+                "zero_padding2d_3"
+            ],
+            "pad": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "type": "Pad",
+            "value": 0.0
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 3763264,
+                "n_params": 9216,
+                "psize": 36864,
+                "rom_n_params": 9280,
+                "rom_output": {
+                    "c_size": 102400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        20,
+                        20,
+                        64,
+                        1
+                    ]
+                },
+                "rom_size": 37120,
+                "rom_size_params": 37120,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 1,
+            "id": 42,
+            "inputs": [
+                "zero_padding2d_3"
+            ],
+            "name": "conv2d_9",
+            "num_filters": 64,
+            "out_shapes": [
+                [
+                    64,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "conv2d_9"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                2,
+                2
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 128,
+                "psize": 512,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 43,
+            "inputs": [
+                "conv2d_9"
+            ],
+            "name": "batch_normalization_13",
+            "out_shapes": [
+                [
+                    64,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_13"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 44,
+            "inputs": [
+                "batch_normalization_13"
+            ],
+            "name": "leaky_re_lu_9",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    64,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_9"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 1715264,
+                "n_params": 4096,
+                "psize": 16384,
+                "rom_n_params": 4160,
+                "rom_output": {
+                    "c_size": 102400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        20,
+                        20,
+                        64,
+                        1
+                    ]
+                },
+                "rom_size": 16640,
+                "rom_size_params": 16640,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 45,
+            "inputs": [
+                "leaky_re_lu_9"
+            ],
+            "name": "conv2d_10",
+            "num_filters": 64,
+            "out_shapes": [
+                [
+                    64,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "conv2d_10"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 128,
+                "psize": 512,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 46,
+            "inputs": [
+                "conv2d_10"
+            ],
+            "name": "batch_normalization_14",
+            "out_shapes": [
+                [
+                    64,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_14"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 47,
+            "inputs": [
+                "batch_normalization_14"
+            ],
+            "name": "leaky_re_lu_10",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    64,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_10"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 48,
+            "inputs": [
+                "leaky_re_lu_10"
+            ],
+            "name": "zero_padding2d_4",
+            "out_shapes": [
+                [
+                    64,
+                    21,
+                    21
+                ]
+            ],
+            "outputs": [
+                "zero_padding2d_4"
+            ],
+            "pad": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "type": "Pad",
+            "value": 0.0
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 76864,
+                "n_params": 576,
+                "psize": 2304,
+                "rom_n_params": 640,
+                "rom_output": {
+                    "c_size": 25600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        64,
+                        1
+                    ]
+                },
+                "rom_size": 2560,
+                "rom_size_params": 2560,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 64,
+            "id": 49,
+            "inputs": [
+                "zero_padding2d_4"
+            ],
+            "name": "depthwise_conv2d_4",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    64,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_4"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                2,
+                2
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 128,
+                "psize": 512,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 50,
+            "inputs": [
+                "depthwise_conv2d_4"
+            ],
+            "name": "batch_normalization_15",
+            "out_shapes": [
+                [
+                    64,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_15"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 51,
+            "inputs": [
+                "batch_normalization_15"
+            ],
+            "name": "leaky_re_lu_11",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    64,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_11"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 153624,
+                "n_params": 1536,
+                "psize": 6144,
+                "rom_n_params": 1560,
+                "rom_output": {
+                    "c_size": 9600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        24,
+                        1
+                    ]
+                },
+                "rom_size": 6240,
+                "rom_size_params": 6240,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 52,
+            "inputs": [
+                "leaky_re_lu_11"
+            ],
+            "name": "conv2d_11",
+            "num_filters": 24,
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_11"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 48,
+                "psize": 192,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 53,
+            "inputs": [
+                "conv2d_11"
+            ],
+            "name": "batch_normalization_16",
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_16"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 259296,
+                "n_params": 2304,
+                "psize": 9216,
+                "rom_n_params": 2400,
+                "rom_output": {
+                    "c_size": 38400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        96,
+                        1
+                    ]
+                },
+                "rom_size": 9600,
+                "rom_size_params": 9600,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 54,
+            "inputs": [
+                "batch_normalization_16"
+            ],
+            "name": "conv2d_12",
+            "num_filters": 96,
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_12"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 192,
+                "psize": 768,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 55,
+            "inputs": [
+                "conv2d_12"
+            ],
+            "name": "batch_normalization_17",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_17"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 56,
+            "inputs": [
+                "batch_normalization_17"
+            ],
+            "name": "leaky_re_lu_12",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_12"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 115296,
+                "n_params": 864,
+                "psize": 3456,
+                "rom_n_params": 960,
+                "rom_output": {
+                    "c_size": 38400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        96,
+                        1
+                    ]
+                },
+                "rom_size": 3840,
+                "rom_size_params": 3840,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 96,
+            "id": 57,
+            "inputs": [
+                "leaky_re_lu_12"
+            ],
+            "name": "depthwise_conv2d_5",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_5"
+            ],
+            "pad": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 192,
+                "psize": 768,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 58,
+            "inputs": [
+                "depthwise_conv2d_5"
+            ],
+            "name": "batch_normalization_18",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_18"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 59,
+            "inputs": [
+                "batch_normalization_18"
+            ],
+            "name": "leaky_re_lu_13",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_13"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 230424,
+                "n_params": 2304,
+                "psize": 9216,
+                "rom_n_params": 2328,
+                "rom_output": {
+                    "c_size": 9600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        24,
+                        1
+                    ]
+                },
+                "rom_size": 9312,
+                "rom_size_params": 9312,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 60,
+            "inputs": [
+                "leaky_re_lu_13"
+            ],
+            "name": "conv2d_13",
+            "num_filters": 24,
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_13"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 48,
+                "psize": 192,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 61,
+            "inputs": [
+                "conv2d_13"
+            ],
+            "name": "batch_normalization_19",
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_19"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2400,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": {
+                    "c_size": 9600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        24,
+                        1
+                    ]
+                },
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 63,
+            "inputs": [
+                "batch_normalization_16",
+                "batch_normalization_19"
+            ],
+            "name": "add_1",
+            "operation": "add",
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "add_1"
+            ],
+            "type": "Eltwise"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 259296,
+                "n_params": 2304,
+                "psize": 9216,
+                "rom_n_params": 2400,
+                "rom_output": {
+                    "c_size": 38400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        96,
+                        1
+                    ]
+                },
+                "rom_size": 9600,
+                "rom_size_params": 9600,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 64,
+            "inputs": [
+                "add_1"
+            ],
+            "name": "conv2d_14",
+            "num_filters": 96,
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_14"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 192,
+                "psize": 768,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 65,
+            "inputs": [
+                "conv2d_14"
+            ],
+            "name": "batch_normalization_20",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_20"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 66,
+            "inputs": [
+                "batch_normalization_20"
+            ],
+            "name": "leaky_re_lu_14",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_14"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 115296,
+                "n_params": 864,
+                "psize": 3456,
+                "rom_n_params": 960,
+                "rom_output": {
+                    "c_size": 38400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        96,
+                        1
+                    ]
+                },
+                "rom_size": 3840,
+                "rom_size_params": 3840,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 96,
+            "id": 67,
+            "inputs": [
+                "leaky_re_lu_14"
+            ],
+            "name": "depthwise_conv2d_6",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_6"
+            ],
+            "pad": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 192,
+                "psize": 768,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 68,
+            "inputs": [
+                "depthwise_conv2d_6"
+            ],
+            "name": "batch_normalization_21",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_21"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 69,
+            "inputs": [
+                "batch_normalization_21"
+            ],
+            "name": "leaky_re_lu_15",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_15"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 230424,
+                "n_params": 2304,
+                "psize": 9216,
+                "rom_n_params": 2328,
+                "rom_output": {
+                    "c_size": 9600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        24,
+                        1
+                    ]
+                },
+                "rom_size": 9312,
+                "rom_size_params": 9312,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 70,
+            "inputs": [
+                "leaky_re_lu_15"
+            ],
+            "name": "conv2d_15",
+            "num_filters": 24,
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_15"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 48,
+                "psize": 192,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 71,
+            "inputs": [
+                "conv2d_15"
+            ],
+            "name": "batch_normalization_22",
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_22"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2400,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": {
+                    "c_size": 9600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        24,
+                        1
+                    ]
+                },
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 73,
+            "inputs": [
+                "add_1",
+                "batch_normalization_22"
+            ],
+            "name": "add_2",
+            "operation": "add",
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "add_2"
+            ],
+            "type": "Eltwise"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 367336,
+                "n_params": 3264,
+                "psize": 13056,
+                "rom_n_params": 3400,
+                "rom_output": {
+                    "c_size": 54400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        136,
+                        1
+                    ]
+                },
+                "rom_size": 13600,
+                "rom_size_params": 13600,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 74,
+            "inputs": [
+                "add_2"
+            ],
+            "name": "conv2d_16",
+            "num_filters": 136,
+            "out_shapes": [
+                [
+                    136,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_16"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 272,
+                "psize": 1088,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 75,
+            "inputs": [
+                "conv2d_16"
+            ],
+            "name": "batch_normalization_23",
+            "out_shapes": [
+                [
+                    136,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_23"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 76,
+            "inputs": [
+                "batch_normalization_23"
+            ],
+            "name": "leaky_re_lu_16",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    136,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_16"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 163336,
+                "n_params": 1224,
+                "psize": 4896,
+                "rom_n_params": 1360,
+                "rom_output": {
+                    "c_size": 54400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        136,
+                        1
+                    ]
+                },
+                "rom_size": 5440,
+                "rom_size_params": 5440,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 136,
+            "id": 77,
+            "inputs": [
+                "leaky_re_lu_16"
+            ],
+            "name": "depthwise_conv2d_7",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    136,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_7"
+            ],
+            "pad": [
+                1,
+                1,
+                1,
+                1
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 272,
+                "psize": 1088,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 78,
+            "inputs": [
+                "depthwise_conv2d_7"
+            ],
+            "name": "batch_normalization_24",
+            "out_shapes": [
+                [
+                    136,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_24"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 79,
+            "inputs": [
+                "batch_normalization_24"
+            ],
+            "name": "leaky_re_lu_17",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    136,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_17"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 326424,
+                "n_params": 3264,
+                "psize": 13056,
+                "rom_n_params": 3288,
+                "rom_output": {
+                    "c_size": 9600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        24,
+                        1
+                    ]
+                },
+                "rom_size": 13152,
+                "rom_size_params": 13152,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 80,
+            "inputs": [
+                "leaky_re_lu_17"
+            ],
+            "name": "conv2d_17",
+            "num_filters": 24,
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_17"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 48,
+                "psize": 192,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 81,
+            "inputs": [
+                "conv2d_17"
+            ],
+            "name": "batch_normalization_25",
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_25"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2400,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": {
+                    "c_size": 9600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        24,
+                        1
+                    ]
+                },
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 83,
+            "inputs": [
+                "add_2",
+                "batch_normalization_25"
+            ],
+            "name": "add_3",
+            "operation": "add",
+            "out_shapes": [
+                [
+                    24,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "add_3"
+            ],
+            "type": "Eltwise"
+        },
+        {
+            "align": false,
+            "center": true,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": {
+                    "c_size": 38400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        20,
+                        20,
+                        24,
+                        1
+                    ]
+                },
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 84,
+            "inputs": [
+                "add_3"
+            ],
+            "mode": "nearest",
+            "name": "up_sampling2d",
+            "out_shapes": [
+                [
+                    24,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "up_sampling2d"
+            ],
+            "scales": [
+                1.0,
+                1.0,
+                2,
+                2
+            ],
+            "type": "Upsample"
+        },
+        {
+            "axis": 0,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": {
+                    "c_size": 140800,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        20,
+                        20,
+                        88,
+                        1
+                    ]
+                },
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 85,
+            "inputs": [
+                "up_sampling2d",
+                "leaky_re_lu_9"
+            ],
+            "name": "concatenate",
+            "out_shapes": [
+                [
+                    88,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "concatenate"
+            ],
+            "twoD_shape": false,
+            "type": "Concat"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 8153824,
+                "n_params": 19712,
+                "psize": 78848,
+                "rom_n_params": 19936,
+                "rom_output": {
+                    "c_size": 358400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        20,
+                        20,
+                        224,
+                        1
+                    ]
+                },
+                "rom_size": 79744,
+                "rom_size_params": 79744,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 86,
+            "inputs": [
+                "concatenate"
+            ],
+            "name": "conv2d_18",
+            "num_filters": 224,
+            "out_shapes": [
+                [
+                    224,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "conv2d_18"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 448,
+                "psize": 1792,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 87,
+            "inputs": [
+                "conv2d_18"
+            ],
+            "name": "batch_normalization_26",
+            "out_shapes": [
+                [
+                    224,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_26"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 88,
+            "inputs": [
+                "batch_normalization_26"
+            ],
+            "name": "leaky_re_lu_18",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    224,
+                    20,
+                    20
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_18"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 89,
+            "inputs": [
+                "leaky_re_lu_18"
+            ],
+            "name": "zero_padding2d_5",
+            "out_shapes": [
+                [
+                    224,
+                    21,
+                    21
+                ]
+            ],
+            "outputs": [
+                "zero_padding2d_5"
+            ],
+            "pad": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "type": "Pad",
+            "value": 0.0
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 269024,
+                "n_params": 2016,
+                "psize": 8064,
+                "rom_n_params": 2240,
+                "rom_output": {
+                    "c_size": 89600,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        224,
+                        1
+                    ]
+                },
+                "rom_size": 8960,
+                "rom_size_params": 8960,
+                "rom_trans": null
+            },
+            "filter_size": [
+                3,
+                3
+            ],
+            "groups": 224,
+            "id": 90,
+            "inputs": [
+                "zero_padding2d_5"
+            ],
+            "name": "depthwise_conv2d_8",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    224,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_8"
+            ],
+            "pad": [
+                0,
+                0
+            ],
+            "stride": [
+                2,
+                2
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 448,
+                "psize": 1792,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 91,
+            "inputs": [
+                "depthwise_conv2d_8"
+            ],
+            "name": "batch_normalization_27",
+            "out_shapes": [
+                [
+                    224,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_27"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 92,
+            "inputs": [
+                "batch_normalization_27"
+            ],
+            "name": "leaky_re_lu_19",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    224,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_19"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 2150496,
+                "n_params": 21504,
+                "psize": 86016,
+                "rom_n_params": 21600,
+                "rom_output": {
+                    "c_size": 38400,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        96,
+                        1
+                    ]
+                },
+                "rom_size": 86400,
+                "rom_size_params": 86400,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 93,
+            "inputs": [
+                "leaky_re_lu_19"
+            ],
+            "name": "conv2d_19",
+            "num_filters": 96,
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_19"
+            ],
+            "pad": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 192,
+                "psize": 768,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 94,
+            "inputs": [
+                "conv2d_19"
+            ],
+            "name": "batch_normalization_28",
+            "out_shapes": [
+                [
+                    96,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_28"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 1228928,
+                "n_params": 12288,
+                "psize": 49152,
+                "rom_n_params": 12416,
+                "rom_output": {
+                    "c_size": 51200,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        128,
+                        1
+                    ]
+                },
+                "rom_size": 49664,
+                "rom_size_params": 49664,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 95,
+            "inputs": [
+                "batch_normalization_28"
+            ],
+            "name": "conv2d_20",
+            "num_filters": 128,
+            "out_shapes": [
+                [
+                    128,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_20"
+            ],
+            "pad": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 256,
+                "psize": 1024,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 96,
+            "inputs": [
+                "conv2d_20"
+            ],
+            "name": "batch_normalization_29",
+            "out_shapes": [
+                [
+                    128,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_29"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 358528,
+                "n_params": 3200,
+                "psize": 12800,
+                "rom_n_params": 3328,
+                "rom_output": {
+                    "c_size": 51200,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        128,
+                        1
+                    ]
+                },
+                "rom_size": 13312,
+                "rom_size_params": 13312,
+                "rom_trans": null
+            },
+            "filter_size": [
+                5,
+                5
+            ],
+            "groups": 128,
+            "id": 97,
+            "inputs": [
+                "batch_normalization_29"
+            ],
+            "name": "depthwise_conv2d_9",
+            "num_filters": 1,
+            "out_shapes": [
+                [
+                    128,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "depthwise_conv2d_9"
+            ],
+            "pad": [
+                2,
+                2,
+                2,
+                2
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 256,
+                "psize": 1024,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 98,
+            "inputs": [
+                "depthwise_conv2d_9"
+            ],
+            "name": "batch_normalization_30",
+            "out_shapes": [
+                [
+                    128,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_30"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "alpha": 0.10000000149011612,
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 0,
+                "psize": 0,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 99,
+            "inputs": [
+                "batch_normalization_30"
+            ],
+            "name": "leaky_re_lu_20",
+            "nonlinearity": "relu",
+            "out_shapes": [
+                [
+                    128,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "leaky_re_lu_20"
+            ],
+            "type": "Nonlinearity"
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 1638528,
+                "n_params": 16384,
+                "psize": 65536,
+                "rom_n_params": 16512,
+                "rom_output": {
+                    "c_size": 51200,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        128,
+                        1
+                    ]
+                },
+                "rom_size": 66048,
+                "rom_size_params": 66048,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 100,
+            "inputs": [
+                "leaky_re_lu_20"
+            ],
+            "name": "conv2d_21",
+            "num_filters": 128,
+            "out_shapes": [
+                [
+                    128,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_21"
+            ],
+            "pad": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": false
+        },
+        {
+            "axes": [
+                0
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 0,
+                "n_params": 256,
+                "psize": 1024,
+                "rom_n_params": 0,
+                "rom_output": null,
+                "rom_size": 0,
+                "rom_size_params": 0,
+                "rom_trans": null
+            },
+            "id": 101,
+            "inputs": [
+                "conv2d_21"
+            ],
+            "name": "batch_normalization_31",
+            "out_shapes": [
+                [
+                    128,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "batch_normalization_31"
+            ],
+            "type": "ScaleBias",
+            "use_bias": true
+        },
+        {
+            "dilation": [
+                1,
+                1
+            ],
+            "extras": {
+                "c_l2_error": 0,
+                "c_l2_id": -1,
+                "n_macc": 960075,
+                "n_params": 9675,
+                "psize": 38700,
+                "rom_n_params": 9675,
+                "rom_output": {
+                    "c_size": 30000,
+                    "fmt": {
+                        "c_bits": [
+                            32,
+                            0
+                        ],
+                        "c_format": "AI_ARRAY_FORMAT_FLOAT",
+                        "c_size": 4,
+                        "c_type": "ai_float",
+                        "format": "FLOAT32"
+                    },
+                    "shape": [
+                        10,
+                        10,
+                        75,
+                        1
+                    ]
+                },
+                "rom_size": 38700,
+                "rom_size_params": 38700,
+                "rom_trans": null
+            },
+            "filter_size": [
+                1,
+                1
+            ],
+            "groups": 1,
+            "id": 102,
+            "inputs": [
+                "batch_normalization_31"
+            ],
+            "name": "conv2d_22",
+            "num_filters": 75,
+            "out_shapes": [
+                [
+                    75,
+                    10,
+                    10
+                ]
+            ],
+            "outputs": [
+                "conv2d_22"
+            ],
+            "pad": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "stride": [
+                1,
+                1
+            ],
+            "type": "Conv2D",
+            "use_bias": true
+        }
+    ],
+    "maxlen_name": 34,
+    "md5": "d295f967757b3a790bc70e766d886094",
+    "model_files": [
+        "/home/lebhoryi/RT-Thread/Detection_API/keras-YOLOv3-model-set/weights/yolo.h5"
+    ],
+    "model_n_params": 126971,
+    "model_name": "yolo",
+    "model_size": 507884,
+    "model_type": "keras (keras_dump)",
+    "name": "network",
+    "outputs": [
+        "conv2d_22"
+    ],
+    "ram_io_size": [
+        409600,
+        30000
+    ],
+    "ram_size": [
+        3307776,
+        3307776
+    ],
+    "report_version": 1.0,
+    "rom_cfact": -0.01723228138708839,
+    "rom_heap": [
+        0,
+        0
+    ],
+    "rom_heap_inspector": 6144,
+    "rom_inputs": [
+        {
+            "c_size": 409600,
+            "c_type": "ai_float",
+            "name": "image_input"
+        }
+    ],
+    "rom_l2_error_max": 0.0,
+    "rom_n_c_nodes": 39,
+    "rom_n_macc": 55464663,
+    "rom_n_macc_max": 8153824,
+    "rom_outputs": [
+        {
+            "c_size": 30000,
+            "c_type": "ai_float",
+            "name": "conv2d_22"
+        }
+    ],
+    "rom_size": 499132,
+    "rom_size_max": 86400,
+    "rom_stack": [
+        0,
+        0
+    ],
+    "strategy": "heap_overlay_pool",
+    "tools_api_version": {
+        "major": 1,
+        "micro": 0,
+        "minor": 3
+    },
+    "tools_version": {
+        "extra": null,
+        "major": 5,
+        "micro": 0,
+        "minor": 2
+    },
+    "version": "0.2"
+}

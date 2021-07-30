@@ -17,8 +17,7 @@ ZED_CAMERA_v2_8=0
 USE_CPP=0
 DEBUG=1
 
-ARCH= -gencode arch=compute_50,code=[sm_50,compute_50] \
-      -gencode arch=compute_52,code=[sm_52,compute_52] \
+ARCH= -gencode arch=compute_52,code=[sm_52,compute_52] \
       -gencode arch=compute_61,code=[sm_61,compute_61]
 
 OS := $(shell uname)
@@ -64,7 +63,7 @@ CC=gcc
 endif
 
 CPP=g++ -std=c++11
-NVCC=nvcc
+NVCC=/usr/local/cuda/bin/nvcc
 OPTS=-Ofast
 LDFLAGS= -lm -pthread
 COMMON= -Iinclude/ -I3rdparty/stb/include
@@ -109,6 +108,7 @@ CFLAGS+= -DGPU
 ifeq ($(OS),Darwin) #MAC
 LDFLAGS+= -L/usr/local/cuda/lib -lcuda -lcudart -lcublas -lcurand
 else
+LDFLAGS+= -L/usr/local/nvidia/lib64 -lcuda # The fix.
 LDFLAGS+= -L/usr/local/cuda/lib64 -lcuda -lcudart -lcublas -lcurand
 endif
 endif

@@ -2,16 +2,16 @@ import argparse
 import os
 import glob
 import random
-import darknet
 import time
 import cv2
 import numpy as np
 import darknet
+from pathlib import Path
 
 
 def parser():
     parser = argparse.ArgumentParser(description="YOLO Object Detection")
-    parser.add_argument("--input", type=str, default="",
+    parser.add_argument("--input", type=str, default="./data/person.jpg",
                         help="image source. It can be a single image, a"
                         "txt with paths to them, or a folder. Image valid"
                         " formats are jpg, jpeg or png."
@@ -147,7 +147,7 @@ def save_annotations(name, image, detections, class_names):
     """
     Files saved with image_name.txt and relative coordinates
     """
-    file_name = name.split(".")[:-1][0] + ".txt"
+    file_name = Path(name).parent / (Path(name).stem + '.txt')
     with open(file_name, "w") as f:
         for label, confidence, bbox in detections:
             x, y, w, h = convert2relative(image, bbox)
@@ -209,8 +209,7 @@ def main():
         print("FPS: {}".format(fps))
         if not args.dont_show:
             cv2.imshow('Inference', image)
-            if cv2.waitKey() & 0xFF == ord('q'):
-                break
+            cv2.waitKey(20000)
         index += 1
 
 
