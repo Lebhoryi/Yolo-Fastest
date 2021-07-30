@@ -167,12 +167,17 @@ def detect_image(network, class_names, image, thresh=.5, hier_thresh=.5, nms=.45
     """
     pnum = pointer(c_int(0))
     predict_image(network, image)
+<<<<<<< HEAD
     # 此处做了逆归一化操作
     detections = get_network_boxes(network, image.w, image.h,
                                    thresh, hier_thresh, None, 0, pnum, 0)
     # print(detect_image[0])
     # print(detect_image[1])
     # print(detect_image[2])
+=======
+    detections = get_network_boxes(network, image.w, image.h,
+                                   thresh, hier_thresh, None, 0, pnum, 0)
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
     num = pnum[0]
     if nms:
         do_nms_sort(detections, num, len(class_names), nms)

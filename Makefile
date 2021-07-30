@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 GPU=1
 CUDNN=1
 CUDNN_HALF=1
 OPENCV=1
+=======
+GPU=0
+CUDNN=0
+CUDNN_HALF=0
+OPENCV=0
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
 AVX=0
 OPENMP=0
 LIBSO=0
@@ -15,10 +22,20 @@ ZED_CAMERA_v2_8=0
 # set ZED_CAMERA_v2_8=1 to enable ZED SDK 2.X
 
 USE_CPP=0
+<<<<<<< HEAD
 DEBUG=1
 
 ARCH= -gencode arch=compute_52,code=[sm_52,compute_52] \
       -gencode arch=compute_61,code=[sm_61,compute_61]
+=======
+DEBUG=0
+
+ARCH= -gencode arch=compute_30,code=sm_30 \
+      -gencode arch=compute_35,code=sm_35 \
+      -gencode arch=compute_50,code=[sm_50,compute_50] \
+      -gencode arch=compute_52,code=[sm_52,compute_52] \
+	    -gencode arch=compute_61,code=[sm_61,compute_61]
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
 
 OS := $(shell uname)
 
@@ -63,7 +80,11 @@ CC=gcc
 endif
 
 CPP=g++ -std=c++11
+<<<<<<< HEAD
 NVCC=/usr/local/cuda/bin/nvcc
+=======
+NVCC=nvcc
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
 OPTS=-Ofast
 LDFLAGS= -lm -pthread
 COMMON= -Iinclude/ -I3rdparty/stb/include
@@ -108,7 +129,10 @@ CFLAGS+= -DGPU
 ifeq ($(OS),Darwin) #MAC
 LDFLAGS+= -L/usr/local/cuda/lib -lcuda -lcudart -lcublas -lcurand
 else
+<<<<<<< HEAD
 LDFLAGS+= -L/usr/local/nvidia/lib64 -lcuda # The fix.
+=======
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
 LDFLAGS+= -L/usr/local/cuda/lib64 -lcuda -lcudart -lcublas -lcurand
 endif
 endif
@@ -119,8 +143,13 @@ ifeq ($(OS),Darwin) #MAC
 CFLAGS+= -DCUDNN -I/usr/local/cuda/include
 LDFLAGS+= -L/usr/local/cuda/lib -lcudnn
 else
+<<<<<<< HEAD
 CFLAGS+= -DCUDNN -I/usr/local/cuda/include
 LDFLAGS+= -L/usr/local/cuda/lib64 -lcudnn
+=======
+CFLAGS+= -DCUDNN -I/usr/local/cudnn/include
+LDFLAGS+= -L/usr/local/cudnn/lib64 -lcudnn
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
 endif
 endif
 

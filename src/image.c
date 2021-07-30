@@ -38,7 +38,11 @@ float get_color(int c, int x, int max)
 
 static float get_pixel(image m, int x, int y, int c)
 {
+<<<<<<< HEAD
     // assert(x < m.w && y < m.h && c < m.c);
+=======
+    assert(x < m.w && y < m.h && c < m.c);
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
     return m.data[c*m.h*m.w + y*m.w + x];
 }
 static float get_pixel_extend(image m, int x, int y, int c)

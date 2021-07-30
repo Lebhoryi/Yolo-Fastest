@@ -1,7 +1,14 @@
 classes= 20
+<<<<<<< HEAD
 train  = /home/lebhoryi/Data/VOC/train.txt
 valid  = /home/lebhoryi/Data/VOC/2007_test.txt
 difficult = /home/lebhoryi/Data/VOC/difficult_2007_test.txt
 names = data/voc.names
 backup = /home/lebhoryi/RT-Thread/Detection_API/Yolo-Fastest/backup/
+=======
+train  = /home/pjreddie/data/voc/train.txt
+valid  = /home/pjreddie/data/voc/2007_test.txt
+names = data/voc.names
+backup = /home/pjreddie/backup/
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
 

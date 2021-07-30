@@ -2,16 +2,27 @@ import argparse
 import os
 import glob
 import random
+<<<<<<< HEAD
+=======
+import darknet
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
 import time
 import cv2
 import numpy as np
 import darknet
+<<<<<<< HEAD
 from pathlib import Path
+=======
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
 
 
 def parser():
     parser = argparse.ArgumentParser(description="YOLO Object Detection")
+<<<<<<< HEAD
     parser.add_argument("--input", type=str, default="./data/person.jpg",
+=======
+    parser.add_argument("--input", type=str, default="",
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
                         help="image source. It can be a single image, a"
                         "txt with paths to them, or a folder. Image valid"
                         " formats are jpg, jpeg or png."
@@ -147,7 +158,11 @@ def save_annotations(name, image, detections, class_names):
     """
     Files saved with image_name.txt and relative coordinates
     """
+<<<<<<< HEAD
     file_name = Path(name).parent / (Path(name).stem + '.txt')
+=======
+    file_name = name.split(".")[:-1][0] + ".txt"
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
     with open(file_name, "w") as f:
         for label, confidence, bbox in detections:
             x, y, w, h = convert2relative(image, bbox)
@@ -209,7 +224,12 @@ def main():
         print("FPS: {}".format(fps))
         if not args.dont_show:
             cv2.imshow('Inference', image)
+<<<<<<< HEAD
             cv2.waitKey(20000)
+=======
+            if cv2.waitKey() & 0xFF == ord('q'):
+                break
+>>>>>>> 1c76abd428ec9957d72b6fe3ec705929f4af4d85
         index += 1
 
 
